@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auro Cafe | Coffee, Bakes & Good Moments</title>
+<meta name="description" content="Freshly brewed coffee, handcrafted drinks and warm bakes. Order online or book a table.">
+<meta property="og:title" content="Auro Cafe">
+<meta property="og:description" content="Freshly brewed coffee, handcrafted drinks and warm bakes.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=70">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script>
+  // Apply saved theme before the page paints (prevents a flash)
+  try {
+    var t = localStorage.getItem('theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" id="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="#home" class="logo"><img class="logo-mark" src="logo.svg" alt="" width="40" height="40"><span>Auro Cafe</span></a>
+      <div class="links" id="links">
+        <a href="#featured">Favourites</a>
+        <a href="#about">Our Story</a>
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#book">Reservations</a>
+        <a href="#visit">Visit</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+        <button class="icon-btn cart-btn" id="cartOpen" aria-label="Open cart">🛒<span class="badge" id="cartCount">0</span></button>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="home">
+  <img class="hero-bg" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=2000&q=70" alt="Inside our cozy cafe">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <p class="kicker">Freshly brewed · Baked every morning</p>
+    <h1>Where every cup<br>feels like home</h1>
+    <p class="lead">Handcrafted coffee, warm bakes and a seat waiting for you. Order ahead or book a table in a minute.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn gold">Order Online</a>
+      <a href="#book" class="btn ghost">Book a Table</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK INFO BAR -->
+<div class="container info-wrap">
+  <div class="info-bar">
+    <div class="info">
+      <span class="info-icon">🕒</span>
+      <div><strong id="openStatus">Opening hours</strong><span id="todayHours"></span></div>
+    </div>
+    <div class="info">
+      <span class="info-icon">📍</span>
+      <div><strong>Find us</strong><span>Auroville, Tamil Nadu, India</span></div>
+    </div>
+    <div class="info">
+      <span class="info-icon">📞</span>
+      <div><strong>Call or WhatsApp</strong><a id="phoneLink" href="#">+91 00000 00000</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- FAVOURITES -->
+<section id="featured">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow">Customer Favourites</span>
+      <h2>Made fresh, made with care</h2>
+      <p class="sub">The drinks and bakes our regulars come back for. Tap add and we will have it ready.</p>
+    </div>
+    <div class="pcards" id="featuredCards"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="alt" id="about">
+  <div class="container about-grid">
+    <div class="about-imgs">
+      <img class="img-main" src="https://images.unsplash.com/photo-1530798749-f62306374512?auto=format&fit=crop&w=900&q=75" alt="Barista making a latte" loading="lazy">
+      <img class="img-small" src="https://images.unsplash.com/photo-1709193114557-f63b46db48da?auto=format&fit=crop&w=600&q=75" alt="Cafe corner with plants" loading="lazy">
+    </div>
+    <div>
+      <span class="eyebrow">Our Story</span>
+      <h2>More than just a cup of coffee</h2>
+      <p class="body-text">We started with a simple idea: a warm, welcoming place where friends meet, students study and everyone feels at home. We choose our beans with care, bake fresh every morning, and make every drink by hand.</p>
+      <p class="body-text">Whether you stop by for a quick espresso or stay all afternoon with a book, there is always a seat for you.</p>
+      <div class="stats">
+        <div><strong>20+</strong><span>Drinks &amp; bakes</span></div>
+        <div><strong>100%</strong><span>Fresh ingredients</span></div>
+        <div><strong>7 days</strong><span>Open every week</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow">Our Menu</span>
+      <h2>Something for every mood</h2>
+    </div>
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div id="menuLists"></div>
+    <p class="center note">Sample menu and prices. Edit them in script.js to match your cafe.</p>
+  </div>
+</section>
+
+<!-- OFFERS & EVENTS -->
+<section class="alt" id="offers">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow">Offers &amp; Events</span>
+      <h2>What's happening</h2>
+    </div>
+    <div class="offers">
+      <article class="offer">
+        <span class="tag">Offer</span>
+        <h3>Happy Hour</h3>
+        <p>Buy one cold drink, get one at 50% off, every day from 3 PM to 5 PM.</p>
+      </article>
+      <article class="offer">
+        <span class="tag">Offer</span>
+        <h3>Student Deal</h3>
+        <p>Show your college ID and get 10% off on all coffees.</p>
+      </article>
+      <article class="offer event">
+        <span class="tag">Event</span>
+        <h3>Open Mic Night</h3>
+        <p>Every Saturday at 7 PM. Sing, play or simply enjoy the music with a warm cup.</p>
+      </article>
+      <article class="offer event">
+        <span class="tag">Event</span>
+        <h3>Coffee Tasting Workshop</h3>
+        <p>First Sunday of every month. Learn how to taste and brew like a pro.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow">Gallery</span>
+      <h2>A peek inside</h2>
+      <p class="sub">Tap any picture to view it larger.</p>
+    </div>
+    <div class="gallery" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="alt" id="reviews">
+  <div class="container center">
+    <span class="eyebrow">Reviews</span>
+    <h2>What our guests say</h2>
+    <div class="carousel" id="carousel" aria-live="polite">
+      <button class="car-btn" id="prevReview" aria-label="Previous review">‹</button>
+      <div class="review" id="reviewBox"></div>
+      <button class="car-btn" id="nextReview" aria-label="Next review">›</button>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+</section>
+
+<!-- BOOK A TABLE -->
+<section class="book" id="book">
+  <img class="book-bg" src="https://images.unsplash.com/photo-1709193114557-f63b46db48da?auto=format&fit=crop&w=1800&q=65" alt="" loading="lazy">
+  <div class="book-overlay"></div>
+  <div class="container book-grid">
+    <div class="book-text">
+      <span class="eyebrow light">Reservations</span>
+      <h2>Book a table</h2>
+      <p>Planning a get-together, a date or a study session? Reserve your spot and we will confirm on WhatsApp.</p>
+    </div>
+    <form class="box form" id="bookForm" novalidate>
+      <div class="row">
+        <label>Name<input type="text" name="name" required placeholder="Your name"></label>
+        <label>Phone<input type="tel" name="phone" required placeholder="Your number"></label>
+      </div>
+      <div class="row">
+        <label>Date<input type="date" name="date" id="bookDate" required></label>
+        <label>Time<input type="time" name="time" required value="18:00"></label>
+      </div>
+      <label>Guests
+        <select name="guests" required>
+          <option>1</option><option selected>2</option><option>3</option><option>4</option>
+          <option>5</option><option>6</option><option>7</option><option>8+</option>
+        </select>
+      </label>
+      <label>Notes (optional)<textarea name="notes" rows="2" placeholder="Birthday, window seat, etc."></textarea></label>
+      <p class="form-msg" id="bookMsg" role="status"></p>
+      <button class="btn" type="submit">Book on WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container narrow">
+    <div class="head center">
+      <span class="eyebrow">FAQ</span>
+      <h2>Good to know</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Do you offer free Wi-Fi?</summary><p>Yes, free Wi-Fi is available for all guests. Ask at the counter for the password.</p></details>
+      <details><summary>Do you have vegetarian and vegan options?</summary><p>Yes, many of our drinks and bakes are vegetarian, and we can make drinks with plant-based milk on request.</p></details>
+      <details><summary>Can I host a birthday or a small party?</summary><p>Of course. Book a table with a note about your plan and we will help arrange it.</p></details>
+      <details><summary>Do you deliver?</summary><p>Place your order here and we will confirm on WhatsApp whether delivery is available to your area.</p></details>
+      <details><summary>What payment methods do you accept?</summary><p>Cash, UPI and cards.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="banner">
+  <div class="container">
+    <h2>Get offers in your inbox</h2>
+    <p>Join our list for new drinks, special deals and event invites. No spam, promise.</p>
+    <form class="news" id="newsForm" novalidate>
+      <input type="email" name="email" id="newsEmail" placeholder="Your email address" required aria-label="Email address">
+      <button class="btn gold" type="submit">Subscribe</button>
+    </form>
+    <p class="form-msg light" id="newsMsg" role="status"></p>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow">Visit Us</span>
+      <h2>We would love to see you</h2>
+    </div>
+    <div class="visit-grid">
+      <div class="box">
+        <h3>Find us</h3>
+        <p>📍 Auroville, Tamil Nadu, India</p>
+        <p>📞 +91 00000 00000</p>
+        <p>✉️ hello@yourcafe.com</p>
+        <h3 class="space">Opening hours</h3>
+        <ul class="hours" id="hoursList"></ul>
+        <div class="map">Paste your Google Maps embed here (Google Maps → Share → Embed a map)</div>
+      </div>
+      <div class="box">
+        <h3>Send us a message</h3>
+        <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="text" name="name" placeholder="Your name" required aria-label="Your name">
+          <input type="email" name="email" placeholder="Your email" required aria-label="Your email">
+          <textarea name="message" rows="6" placeholder="Your message" required aria-label="Your message"></textarea>
+          <button class="btn" type="submit">Send message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div class="logo"><img class="logo-mark" src="logo.svg" alt="" width="40" height="40"><span>Auro Cafe</span></div>
+      <div class="social">
+        <a href="#">Instagram</a><a href="#">Facebook</a><a href="#">WhatsApp</a>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span id="year"></span> Auro Cafe. All rights reserved.</span>
+      <span>Sample photos from <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>. Replace with your own cafe photos.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Your order" aria-hidden="true">
+  <div class="drawer-head">
+    <h3>Your order</h3>
+    <button class="icon-btn" id="cartClose" aria-label="Close cart">✕</button>
+  </div>
+  <div class="drawer-body" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="total"><span>Total</span><strong id="cartTotal">₹0</strong></div>
+    <input type="text" id="orderName" placeholder="Your name" aria-label="Your name">
+    <select id="orderType" aria-label="Order type">
+      <option>Dine in</option>
+      <option>Takeaway</option>
+      <option>Delivery</option>
+    </select>
+    <p class="form-msg" id="orderMsg" role="status"></p>
+    <button class="btn block" id="checkout">Order on WhatsApp</button>
+    <button class="link-btn" id="clearCart">Clear cart</button>
+  </div>
+</aside>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Close picture">✕</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous picture">‹</button>
+  <figure class="lb-figure">
+    <img id="lbImg" src="" alt="">
+    <figcaption id="lbCaption"></figcaption>
+  </figure>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Next picture">›</button>
+</div>
+
+<a class="wa" id="waFloat" href="#" aria-label="Chat on WhatsApp">💬</a>
+
+<script src="script.js"></script>
+</body>
+</html>
